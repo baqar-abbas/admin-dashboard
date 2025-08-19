@@ -1,0 +1,80 @@
+{
+  "kpis": {
+    "revenue": 128450,
+    "orders": 542,
+    "conversion": 3.8,
+    "avgOrderValue": 237.4
+  },
+  "revenueByMonth": [
+    { "month": "2025-01", "value": 18200 },
+    { "month": "2025-02", "value": 19400 },
+    { "month": "2025-03", "value": 22100 },
+    { "month": "2025-04", "value": 20850 },
+    { "month": "2025-05", "value": 24990 },
+    { "month": "2025-06", "value": 26430 },
+    { "month": "2025-07", "value": 27480 }
+  ],
+  "ordersByStatus": [
+    { "status": "Pending", "count": 61 },
+    { "status": "Processing", "count": 132 },
+    { "status": "Shipped", "count": 284 },
+    { "status": "Cancelled", "count": 13 },
+    { "status": "Returned", "count": 6 }
+  ],
+  "traffic": [
+    { "source": "Direct", "visits": 4280 },
+    { "source": "Organic", "visits": 5810 },
+    { "source": "Paid", "visits": 2130 },
+    { "source": "Referral", "visits": 1350 },
+    { "source": "Email", "visits": 920 }
+  ],
+  "categoryShare": [
+    { "name": "Sweets", "value": 38 },
+    { "name": "Namkeens", "value": 26 },
+    { "name": "Bakery", "value": 20 },
+    { "name": "Other", "value": 16 }
+  ],
+  "systemHealth": { "cpu": 42, "memory": 63, "disk": 70 },
+  "topCustomers": [
+    { "id": 1, "name": "Aria Khan", "orders": 19, "spend": 3820 },
+    { "id": 2, "name": "Bilal Ahmed", "orders": 15, "spend": 3195 },
+    { "id": 3, "name": "Chen Wei", "orders": 12, "spend": 2770 }
+  ],
+  "orders": [
+    {
+      "id": 10101,
+      "date": "2025-07-18",
+      "customer": "Aria Khan",
+      "status": "Shipped",
+      "amount": 240.5
+    },
+    {
+      "id": 10102,
+      "date": "2025-07-18",
+      "customer": "Bilal Ahmed",
+      "status": "Processing",
+      "amount": 119.0
+    },
+    {
+      "id": 10103,
+      "date": "2025-07-17",
+      "customer": "Chen Wei",
+      "status": "Pending",
+      "amount": 89.99
+    }
+  ],
+  "activity": [
+    { "time": "2025-07-18T12:01:00Z", "text": "Order #10101 shipped" },
+    { "time": "2025-07-18T11:20:00Z", "text": "New user registered: Sara" },
+    { "time": "2025-07-18T10:45:00Z", "text": "Inventory synced" }
+  ],
+  "users": [
+    { "id": 1, "name": "Admin", "email": "admin@example.com", "role": "admin" },
+    {
+      "id": 2,
+      "name": "Manager",
+      "email": "manager@example.com",
+      "role": "manager"
+    }
+  ]
+}
