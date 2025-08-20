@@ -1,15 +1,23 @@
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import DashboardLayout from "./layouts/DashboardLayout";
+import Dashboard from "./pages/Dashboard";
+import Users from "./pages/Users";
+import Orders from "./pages/Orders";
 
 function App() {
   return (
     <>
-      <div className="min-h-screen grid place-items-center bg-gray-50">
-        <h1 className="text-3xl font-bold underline">
-          Admin Dashboard — Tailwind 3.4 ✅
-        </h1>
-      </div>
+      <Routes>
+        <Route path="/" element={<DashboardLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="users" element={<Users />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="*" element={<div>404 Not Found</div>} />
+        </Route>
+      </Routes>
     </>
   );
 }
