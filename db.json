@@ -2,8 +2,10 @@
   "kpis": {
     "revenue": 128450,
     "orders": 542,
+    "customers": 318,
     "conversion": 3.8,
-    "avgOrderValue": 237.4
+    "avgOrderValue": 237.4,
+    "profitMargin": 22.5
   },
   "revenueByMonth": [
     { "month": "2025-01", "value": 18200 },
