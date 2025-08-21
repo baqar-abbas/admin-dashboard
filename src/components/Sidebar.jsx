@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaHome, FaUsers, FaBox, FaCog, FaTimes } from "react-icons/fa";
 
 const Sidebar = ({ isOpen, onClose }) => {
   return (
@@ -17,37 +18,40 @@ const Sidebar = ({ isOpen, onClose }) => {
         md:static md:translate-x-0
         ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
-        <div className="p-4 font-bold text-xl border-b border-blue-700">
-          Admin Panel
+        <div className="p-4 font-bold text-xl border-b border-blue-700 flex items-center justify-between">
+          Admin Panel{" "}
+          <button className="md:hidden" onClick={onClose}>
+            <FaTimes />
+          </button>
         </div>
         <nav className="flex flex-col p-4 space-y-2">
           <Link
             to="/"
-            className="block hover:bg-blue-700 p-2 rounded"
+            className="flex items-center hover:bg-blue-700 p-2 rounded"
             onClick={onClose}
           >
-            Dashboard
+            <FaHome /> <span className="ml-2">Dashboard</span>
           </Link>
           <Link
             to="/orders"
-            className="block hover:bg-blue-700 p-2 rounded"
+            className="flex items-center hover:bg-blue-700 p-2 rounded"
             onClick={onClose}
           >
-            Orders
+            <FaBox /> <span className="ml-2">Orders</span>
           </Link>
           <Link
             to="/users"
-            className="block hover:bg-blue-700 p-2 rounded"
+            className="flex items-center hover:bg-blue-700 p-2 rounded"
             onClick={onClose}
           >
-            Users
+            <FaUsers /> <span className="ml-2">Users</span>
           </Link>
           <Link
             to="/settings"
-            className="block hover:bg-blue-700 p-2 rounded"
+            className="flex items-center hover:bg-blue-700 p-2 rounded"
             onClick={onClose}
           >
-            Settings
+            <FaCog /> <span className="ml-2">Settings</span>
           </Link>
         </nav>
       </div>
