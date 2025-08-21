@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { FaHome, FaUsers, FaBox, FaCog, FaTimes } from "react-icons/fa";
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -25,34 +25,52 @@ const Sidebar = ({ isOpen, onClose }) => {
           </button>
         </div>
         <nav className="flex flex-col p-4 space-y-2">
-          <Link
+          <NavLink
             to="/"
-            className="flex items-center hover:bg-blue-700 p-2 rounded"
+            end
+            className={({ isActive }) =>
+              `flex items-center p-2 rounded ${
+                isActive ? "bg-blue-700 font-bold" : "hover:bg-blue-700"
+              }`
+            }
+            // "flex items-center hover:bg-blue-700 p-2 rounded"
             onClick={onClose}
           >
             <FaHome /> <span className="ml-2">Dashboard</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/orders"
-            className="flex items-center hover:bg-blue-700 p-2 rounded"
+            className={({ isActive }) =>
+              `flex items-center p-2 rounded ${
+                isActive ? "bg-blue-700 font-bold" : "hover:bg-blue-700"
+              }`
+            }
             onClick={onClose}
           >
             <FaBox /> <span className="ml-2">Orders</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/users"
-            className="flex items-center hover:bg-blue-700 p-2 rounded"
+            className={({ isActive }) =>
+              `flex items-center p-2 rounded ${
+                isActive ? "bg-blue-700 font-bold" : "hover:bg-blue-700"
+              }`
+            }
             onClick={onClose}
           >
             <FaUsers /> <span className="ml-2">Users</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/settings"
-            className="flex items-center hover:bg-blue-700 p-2 rounded"
+            className={({ isActive }) =>
+              `flex items-center p-2 rounded ${
+                isActive ? "bg-blue-700 font-bold" : "hover:bg-blue-700"
+              }`
+            }
             onClick={onClose}
           >
             <FaCog /> <span className="ml-2">Settings</span>
-          </Link>
+          </NavLink>
         </nav>
       </div>
     </>
