@@ -1,5 +1,6 @@
 import React from "react";
 import KpiCards from "../components/KpiCards";
+import RevenueLineChart from "../components/charts/RevenueLineChart";
 
 const Dashboard = () => {
   return (
@@ -8,7 +9,10 @@ const Dashboard = () => {
         Welcome to Dashboard
       </h1>
       <KpiCards />
-      {/* Later: charts, tables, logs etc */}
+
+      <div className="grid grid-cols-1 gap-6">
+        <RevenueLineChart />
+      </div>
     </div>
   );
 };
