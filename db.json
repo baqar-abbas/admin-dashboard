@@ -20,8 +20,8 @@
     { "status": "Pending", "count": 61 },
     { "status": "Processing", "count": 132 },
     { "status": "Shipped", "count": 284 },
-    { "status": "Cancelled", "count": 13 },
-    { "status": "Returned", "count": 6 }
+    { "status": "Cancelled", "count": 33 },
+    { "status": "Returned", "count": 26 }
   ],
   "traffic": [
     { "source": "Direct", "visits": 4280 },

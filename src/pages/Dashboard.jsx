@@ -1,6 +1,7 @@
 import React from "react";
 import KpiCards from "../components/KpiCards";
 import RevenueLineChart from "../components/charts/RevenueLineChart";
+import OrdersByStatusChart from "../components/charts/OrdersByStatusChart";
 
 const Dashboard = () => {
   return (
@@ -10,8 +11,14 @@ const Dashboard = () => {
       </h1>
       <KpiCards />
 
-      <div className="grid grid-cols-1 gap-6">
+      {/* Line Chart */}
+      <div className="grid grid-cols-1 gap-6 mb-10">
         <RevenueLineChart />
+      </div>
+
+      {/* Bar Chart */}
+      <div className="grid grid-cols-1 gap-6">
+        <OrdersByStatusChart />
       </div>
     </div>
   );
