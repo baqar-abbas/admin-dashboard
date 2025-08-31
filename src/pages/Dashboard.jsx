@@ -2,6 +2,7 @@ import React from "react";
 import KpiCards from "../components/KpiCards";
 import RevenueLineChart from "../components/charts/RevenueLineChart";
 import OrdersByStatusChart from "../components/charts/OrdersByStatusChart";
+import TrafficBySourceChart from "../components/charts/TrafficBySourceChart";
 
 const Dashboard = () => {
   return (
@@ -19,6 +20,11 @@ const Dashboard = () => {
       {/* Bar Chart */}
       <div className="grid grid-cols-1 gap-6">
         <OrdersByStatusChart />
+      </div>
+
+      {/* Pie Chart - Traffic by Source */}
+      <div className="grid grid-cols-1 gap-6 mb-10">
+        <TrafficBySourceChart />
       </div>
     </div>
   );
