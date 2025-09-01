@@ -5,6 +5,8 @@ const TopCustomers = () => {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5;
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -45,10 +47,15 @@ const TopCustomers = () => {
       </div>
     );
   }
+
+  // Pagination logic
+  const totalPages = Math.ceil(customers.length / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const currentCustomers = customers.slice(startIndex, startIndex + pageSize);
   return (
     <div className="bg-white p-6 rounded-2xl shadow-md">
       <h2 className="text-lg font-semibold text-gray-800 mb-4">
-        Top Customers Component
+        Top Customers
       </h2>
       <div className="overflow-x-auto">
         <table className="min-w-full border-collapse">
@@ -60,7 +67,7 @@ const TopCustomers = () => {
             </tr>
           </thead>
           <tbody>
-            {customers.map((customer) => (
+            {currentCustomers.map((customer) => (
               <tr
                 key={customer.id}
                 className="border-t hover:bg-gray-50 transition"
@@ -74,6 +81,26 @@ const TopCustomers = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      {/* Pagination Controls */}
+      <div className="flex justify-end items-center gap-2 mt-4">
+        <button
+          className="px-3 py-1 bg-gray-200 rounded-lg text-sm disabled:opacity-50"
+          onClick={() => setCurrentPage((prev) => prev - 1)}
+          disabled={currentPage === 1}
+        >
+          Prev
+        </button>
+        <span className="text-sm text-gray-700">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          className="px-3 py-1 bg-gray-200 rounded-lg text-sm disabled:opacity-50"
+          onClick={() => setCurrentPage((prev) => prev + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

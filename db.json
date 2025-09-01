@@ -40,7 +40,14 @@
   "topCustomers": [
     { "id": 1, "name": "Aria Khan", "orders": 19, "spend": 3820 },
     { "id": 2, "name": "Bilal Ahmed", "orders": 15, "spend": 3195 },
-    { "id": 3, "name": "Chen Wei", "orders": 12, "spend": 2770 }
+    { "id": 3, "name": "Chen Wei", "orders": 12, "spend": 2770 },
+    { "id": 4, "name": "Maria Khan", "orders": 21, "spend": 3920 },
+    { "id": 5, "name": "Ahmed Kirmani", "orders": 13, "spend": 2995 },
+    { "id": 6, "name": "Wei Cheng", "orders": 12, "spend": 2770 },
+    { "id": 7, "name": "Superia Johnson", "orders": 19, "spend": 3820 },
+    { "id": 8, "name": "Waleed Khan", "orders": 15, "spend": 3195 },
+    { "id": 9, "name": "Sara Ali", "orders": 12, "spend": 2770 },
+    { "id": 10, "name": "Junaid Saleem", "orders": 15, "spend": 3195 }
   ],
   "orders": [
     {
