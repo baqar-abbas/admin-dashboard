@@ -14,7 +14,7 @@ const TopCustomers = () => {
         console.log("Top Customers Data:", response.data);
       } catch (err) {
         console.error("Error fetching top customers data:", err);
-        setError(err);
+        setError("Failed to load top customers ❌");
       } finally {
         setLoading(false);
       }
