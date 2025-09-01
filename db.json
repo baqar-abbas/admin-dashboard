@@ -36,7 +36,7 @@
     { "name": "Bakery", "value": 20 },
     { "name": "Other", "value": 16 }
   ],
-  "systemHealth": { "cpu": 42, "memory": 63, "disk": 70 },
+  "systemHealth": { "cpu": 42, "memory": 63, "disk": 76 },
   "topCustomers": [
     { "id": 1, "name": "Aria Khan", "orders": 19, "spend": 3820 },
     { "id": 2, "name": "Bilal Ahmed", "orders": 15, "spend": 3195 },

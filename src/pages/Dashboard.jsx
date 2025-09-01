@@ -5,6 +5,7 @@ import OrdersByStatusChart from "../components/charts/OrdersByStatusChart";
 import TrafficBySourceChart from "../components/charts/TrafficBySourceChart";
 import CategoryShareChart from "../components/charts/CategoryShareChart";
 import SystemHealth from "../components/SystemHealth";
+import TopCustomers from "../components/TopCustomers";
 
 const Dashboard = () => {
   return (
@@ -33,6 +34,11 @@ const Dashboard = () => {
       {/* System Health */}
       <div className="grid grid-cols-1 gap-6 mb-10">
         <SystemHealth />
+      </div>
+
+      {/* Top Customers */}
+      <div className="grid grid-cols-1 gap-6 mb-10">
+        <TopCustomers />
       </div>
     </div>
   );
