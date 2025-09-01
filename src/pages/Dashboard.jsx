@@ -3,6 +3,7 @@ import KpiCards from "../components/KpiCards";
 import RevenueLineChart from "../components/charts/RevenueLineChart";
 import OrdersByStatusChart from "../components/charts/OrdersByStatusChart";
 import TrafficBySourceChart from "../components/charts/TrafficBySourceChart";
+import CategoryShareChart from "../components/charts/CategoryShareChart";
 
 const Dashboard = () => {
   return (
@@ -22,9 +23,10 @@ const Dashboard = () => {
         <OrdersByStatusChart />
       </div>
 
-      {/* Pie Chart - Traffic by Source */}
-      <div className="grid grid-cols-1 gap-6 mb-10">
+      {/* Pie/Donut Charts */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 mt-10">
         <TrafficBySourceChart />
+        <CategoryShareChart />
       </div>
     </div>
   );
