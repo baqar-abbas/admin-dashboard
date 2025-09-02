@@ -78,12 +78,19 @@
     { "time": "2025-07-18T10:45:00Z", "text": "Inventory synced" }
   ],
   "users": [
-    { "id": 1, "name": "Admin", "email": "admin@example.com", "role": "admin" },
+    {
+      "id": 1,
+      "name": "Admin",
+      "email": "admin@example.com",
+      "role": "admin",
+      "status": "Active"
+    },
     {
       "id": 2,
       "name": "Manager",
       "email": "manager@example.com",
-      "role": "manager"
+      "role": "manager",
+      "status": "Active"
     }
   ]
 }
