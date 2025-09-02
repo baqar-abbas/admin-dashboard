@@ -7,6 +7,17 @@ const Users = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [showModal, setShowModal] = useState(false);
+  const [editingUser, setEditingUser] = useState(null);
+  const [viewingUser, setViewingUser] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    role: "user",
+    status: "Active",
+  });
+
+  // Fetch users
   const fetchUsers = async () => {
     setLoading(true);
     try {
@@ -24,11 +35,50 @@ const Users = () => {
   useEffect(() => {
     fetchUsers();
   }, []);
+
+  // Hanlde input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Add or update user
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (editingUser) {
+        await api.put(`/users/${editingUser.id}`, formData);
+      } else {
+        await api.post("/users", formData);
+      }
+      await fetchUsers();
+      setShowModal(false);
+      setEditingUser(null);
+      setFormData({ name: "", email: "", role: "user", status: "Active" });
+    } catch (err) {
+      console.error("Error saving user:", err);
+      setError("Failed to save user ❌");
+    }
+  };
+
+  // Delete user
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this user?")) return;
+    try {
+      await api.delete(`/users/${id}`);
+      setUsers(users.filter((u) => u.id !== id));
+    } catch (err) {
+      console.error("Error deleting user:", err);
+    }
+  };
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-gray-800">Users Management</h1>
-        <button className="flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+        <button
+          onClick={() => setShowModal(true)}
+          className="flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+        >
           <FaPlus className="inline-block mr-2" />
           Add User
         </button>
@@ -70,13 +120,26 @@ const Users = () => {
                   </span>
                 </td>
                 <td className="border px-4 py-2 flex justify-center gap-3">
-                  <button className="text-blue-500 hover:text-blue-700">
+                  <button
+                    onClick={() => setViewingUser(u)}
+                    className="text-blue-500 hover:text-blue-700"
+                  >
                     <FaEye />
                   </button>
-                  <button className="text-green-500 hover:text-green-700">
+                  <button
+                    onClick={() => {
+                      setEditingUser(u);
+                      setFormData(u);
+                      setShowModal(true);
+                    }}
+                    className="text-green-500 hover:text-green-700"
+                  >
                     <FaEdit />
                   </button>
-                  <button className="text-red-500 hover:text-red-800">
+                  <button
+                    onClick={() => handleDelete(u.id)}
+                    className="text-red-500 hover:text-red-800"
+                  >
                     <FaTrash />
                   </button>
                 </td>
@@ -84,6 +147,106 @@ const Users = () => {
             ))}
           </tbody>
         </table>
+      )}
+
+      {/* Modal for Add/Edit */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg w-96 shadow-lg">
+            <h2 className="text-xl font-bold mb-4 ">
+              {editingUser ? "Edit User" : "Add User"}
+            </h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Enter name"
+                className="w-full border p-2 rounded"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter Email"
+                className="w-full border p-2 rounded"
+                required
+              />
+              <select
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                className="w-full border p-2 rounded"
+              >
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+                <option value="manager">Manager</option>
+              </select>
+              <select
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                className="w-full border p-2 rounded"
+              >
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+
+              <div className="flex justify-end gap-3">
+                <button
+                  className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+                  onClick={() => {
+                    setShowModal(false);
+                    setEditingUser(null);
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                >
+                  {editingUser ? "Update" : "Add"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Modal for View User */}
+      {viewingUser && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg w-96 shadow-lg">
+            <h2 className="text-xl font-bold mb-4">User Details</h2>
+            <p>
+              <strong>ID:</strong> {viewingUser.id}
+            </p>
+            <p>
+              <strong>Name:</strong> {viewingUser.name}
+            </p>
+            <p>
+              <strong>Email:</strong> {viewingUser.email}
+            </p>
+            <p>
+              <strong>Role:</strong> {viewingUser.role}
+            </p>
+            <p>
+              <strong>Status:</strong> {viewingUser.status}
+            </p>
+            <div className="flex justify-end mt-4">
+              <button
+                onClick={() => setViewingUser(null)}
+                className="px-4 py-2 bg-blue-600 text-white rounded"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
