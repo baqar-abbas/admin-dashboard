@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
+import api from "../lib/api";
 
 const Orders = () => {
   return (
