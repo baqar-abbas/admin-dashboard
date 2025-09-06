@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
+import { FaEye, FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import api from "../lib/api";
 
 const Orders = () => {
@@ -44,10 +44,18 @@ const Orders = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.put(`/orders/${showModal.data.id}`, {
-        ...formData,
-        amount: parseFloat(formData.amount),
-      });
+      if (showModal.type === "edit") {
+        await api.put(`/orders/${showModal.data.id}`, {
+          ...formData,
+          amount: parseFloat(formData.amount),
+        });
+      } else if (showModal.type === "add") {
+        await api.post("/orders", {
+          ...formData,
+          amount: parseFloat(formData.amount),
+        });
+      }
+
       await fetchOrders();
       setShowModal({ type: null, data: null });
       setFormData({ date: "", customer: "", status: "Pending", amount: "" });
@@ -70,7 +78,24 @@ const Orders = () => {
   };
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">Orders</h1>
+      {/* Header with Add button */}
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold text-gray-800 mb-6">Orders</h1>
+        <button
+          onClick={() => {
+            setShowModal({ type: "add", data: null });
+            setFormData({
+              date: "",
+              customer: "",
+              status: "Pending",
+              amount: "",
+            });
+          }}
+          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          <FaPlus /> Add Order
+        </button>
+      </div>
 
       {/* Loading / Error or render orders data */}
       {loading ? (
@@ -159,11 +184,13 @@ const Orders = () => {
         </div>
       )}
 
-      {/* Edit Order Modal */}
-      {showModal.type === "edit" && (
+      {/* Add / Edit Modal */}
+      {(showModal.type === "edit" || showModal.type === "add") && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg w-96 shadow-lg">
-            <h2 className="text-xl font-bold mb-4 ">Edit Order</h2>
+            <h2 className="text-xl font-bold mb-4 ">
+              {showModal.type === "edit" ? "Edit Order" : "Add Order"}
+            </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"
@@ -218,7 +245,7 @@ const Orders = () => {
                   type="submit"
                   className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
                 >
-                  Update
+                  {showModal.type === "edit" ? "Update" : "Add"}
                 </button>
               </div>
             </form>
