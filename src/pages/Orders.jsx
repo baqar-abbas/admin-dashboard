@@ -63,7 +63,10 @@ const Orders = () => {
                 <td className="px-4 py-2 border">{order.status}</td>
                 <td className="px-4 py-2 border">{order.amount.toFixed(2)}</td>
                 <td className="border px-4 py-2 flex justify-center gap-3">
-                  <button className="text-blue-500 hover:text-blue-700">
+                  <button
+                    onClick={() => setShowModal({ type: "view", data: order })}
+                    className="text-blue-500 hover:text-blue-700"
+                  >
                     <FaEye />
                   </button>
                   <button className="text-green-500 hover:text-green-700">
@@ -77,6 +80,39 @@ const Orders = () => {
             ))}
           </tbody>
         </table>
+      )}
+
+      {/* View Order Modal */}
+      {showModal.type === "view" && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center ">
+          <div className="bg-white p-6 rounded-lg w-96 shadow-lg">
+            <h2 className="text-xl font-bold mb-4">Order Details</h2>
+            <p>
+              <strong>ID</strong> {showModal.data.id}
+            </p>
+            <p>
+              <strong>Date</strong> {showModal.data.date}
+            </p>
+            <p>
+              <strong>Customer</strong> {showModal.data.customer}
+            </p>
+            <p>
+              <strong>Status</strong> {showModal.data.status}
+            </p>
+            <p>
+              <strong>Amount</strong> {showModal.data.amount.toFixed(2)}
+            </p>
+
+            <div className="flex justify-end mt-4">
+              <button
+                onClick={() => setShowModal({ type: null, data: null })}
+                className="px-4 py-2 bg-blue-600 text-white rounded"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
