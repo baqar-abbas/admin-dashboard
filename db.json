@@ -10,93 +10,114 @@
   "revenueByMonth": [
     {
       "month": "2025-01",
-      "value": 18200
+      "value": 18200,
+      "id": "3a0c"
     },
     {
       "month": "2025-02",
-      "value": 19400
+      "value": 19400,
+      "id": "3ff0"
     },
     {
       "month": "2025-03",
-      "value": 22100
+      "value": 22100,
+      "id": "d98f"
     },
     {
       "month": "2025-04",
-      "value": 20850
+      "value": 20850,
+      "id": "ae38"
     },
     {
       "month": "2025-05",
-      "value": 24990
+      "value": 24990,
+      "id": "9c28"
     },
     {
       "month": "2025-06",
-      "value": 26430
+      "value": 26430,
+      "id": "41b8"
     },
     {
       "month": "2025-07",
-      "value": 27480
+      "value": 27480,
+      "id": "f35e"
     }
   ],
   "ordersByStatus": [
     {
       "status": "Pending",
-      "count": 61
+      "count": 61,
+      "id": "470a"
     },
     {
       "status": "Processing",
-      "count": 132
+      "count": 132,
+      "id": "0ae3"
     },
     {
       "status": "Shipped",
-      "count": 284
+      "count": 284,
+      "id": "d6f0"
     },
     {
       "status": "Cancelled",
-      "count": 33
+      "count": 33,
+      "id": "5602"
     },
     {
       "status": "Returned",
-      "count": 26
+      "count": 26,
+      "id": "739e"
     }
   ],
   "traffic": [
     {
       "source": "Direct",
-      "visits": 4280
+      "visits": 4280,
+      "id": "0296"
     },
     {
       "source": "Organic",
-      "visits": 5810
+      "visits": 5810,
+      "id": "fe31"
     },
     {
       "source": "Paid",
-      "visits": 2130
+      "visits": 2130,
+      "id": "a266"
     },
     {
       "source": "Referral",
-      "visits": 1350
+      "visits": 1350,
+      "id": "f12a"
     },
     {
       "source": "Email",
-      "visits": 920
+      "visits": 920,
+      "id": "509e"
     }
   ],
   "categoryShare": [
     {
       "name": "Sweets",
-      "value": 38
+      "value": 38,
+      "id": "f1c9"
     },
     {
       "name": "Namkeens",
-      "value": 26
+      "value": 26,
+      "id": "e9cd"
     },
     {
       "name": "Bakery",
-      "value": 20
+      "value": 20,
+      "id": "14b9"
     },
     {
       "name": "Other",
-      "value": 16
+      "value": 16,
+      "id": "132d"
     }
   ],
   "systemHealth": {
@@ -106,61 +127,61 @@
   },
   "topCustomers": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Aria Khan",
       "orders": 19,
       "spend": 3820
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Bilal Ahmed",
       "orders": 15,
       "spend": 3195
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Chen Wei",
       "orders": 12,
       "spend": 2770
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Maria Khan",
       "orders": 21,
       "spend": 3920
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Ahmed Kirmani",
       "orders": 13,
       "spend": 2995
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Wei Cheng",
       "orders": 12,
       "spend": 2770
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Superia Johnson",
       "orders": 19,
       "spend": 3820
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Waleed Khan",
       "orders": 15,
       "spend": 3195
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Sara Ali",
       "orders": 12,
       "spend": 2770
     },
     {
-      "id": 10,
+      "id": "10",
       "name": "Junaid Saleem",
       "orders": 15,
       "spend": 3195
@@ -168,21 +189,21 @@
   ],
   "orders": [
     {
-      "id": 10101,
+      "id": "10101",
       "date": "2025-07-18",
       "customer": "Aria Khan",
       "status": "Shipped",
       "amount": 240.5
     },
     {
-      "id": 10102,
+      "id": "10102",
       "date": "2025-07-18",
       "customer": "Bilal Ahmed",
       "status": "Processing",
       "amount": 119
     },
     {
-      "id": 10103,
+      "id": "10103",
       "date": "2025-07-17",
       "customer": "Chen Wei",
       "status": "Pending",
@@ -192,27 +213,30 @@
   "activity": [
     {
       "time": "2025-07-18T12:01:00Z",
-      "text": "Order #10101 shipped"
+      "text": "Order #10101 shipped",
+      "id": "0eae"
     },
     {
       "time": "2025-07-18T11:20:00Z",
-      "text": "New user registered: Sara"
+      "text": "New user registered: Sara",
+      "id": "f27d"
     },
     {
       "time": "2025-07-18T10:45:00Z",
-      "text": "Inventory synced"
+      "text": "Inventory synced",
+      "id": "7b75"
     }
   ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Admin",
       "email": "admin@example.com",
       "role": "admin",
       "status": "Active"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Manager",
       "email": "manager@example.com",
       "role": "manager",

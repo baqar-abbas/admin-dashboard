@@ -33,6 +33,41 @@ const Orders = () => {
   useEffect(() => {
     fetchOrders();
   }, []);
+
+  // Handle form input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Update order
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await api.put(`/orders/${showModal.data.id}`, {
+        ...formData,
+        amount: parseFloat(formData.amount),
+      });
+      await fetchOrders();
+      setShowModal({ type: null, data: null });
+      setFormData({ date: "", customer: "", status: "Pending", amount: "" });
+    } catch (err) {
+      console.error("Error updating order:", err);
+      setError("Failed to update order ❌");
+    }
+  };
+
+  // Delete order
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this order?")) return;
+    try {
+      await api.delete(`/orders/${id}`);
+      setOrders((prev) => prev.filter((order) => order.id !== id));
+    } catch (err) {
+      console.error("Error deleting order:", err);
+      setError("Failed to delete order ❌");
+    }
+  };
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">Orders</h1>
@@ -69,10 +104,19 @@ const Orders = () => {
                   >
                     <FaEye />
                   </button>
-                  <button className="text-green-500 hover:text-green-700">
+                  <button
+                    onClick={() => {
+                      setShowModal({ type: "edit", data: order });
+                      setFormData(order);
+                    }}
+                    className="text-green-500 hover:text-green-700"
+                  >
                     <FaEdit />
                   </button>
-                  <button className="text-red-500 hover:text-red-700">
+                  <button
+                    onClick={() => handleDelete(order.id)}
+                    className="text-red-500 hover:text-red-700"
+                  >
                     <FaTrash />
                   </button>
                 </td>
@@ -111,6 +155,73 @@ const Orders = () => {
                 Close
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Order Modal */}
+      {showModal.type === "edit" && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg w-96 shadow-lg">
+            <h2 className="text-xl font-bold mb-4 ">Edit Order</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                type="text"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                placeholder="Enter date"
+                className="w-full border p-2 rounded"
+                required
+              />
+              <input
+                type="text"
+                name="customer"
+                value={formData.customer}
+                onChange={handleChange}
+                className="w-full border p-2 rounded"
+                required
+              />
+              <select
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                className="w-full border p-2 rounded"
+              >
+                <option value="Pending">Pending</option>
+                <option value="Processing">Processing</option>
+                <option value="Shipped">Shipped</option>
+
+                <option value="Cancelled">Cancelled</option>
+                <option value="Returned">Returned</option>
+              </select>
+              <input
+                type="number"
+                name="amount"
+                value={formData.amount}
+                onChange={handleChange}
+                placeholder="Enter amount"
+                className="w-full border p-2 rounded"
+                required
+              />
+
+              <div className="flex justify-end gap-3">
+                <button
+                  type="button"
+                  onClick={() => setShowModal({ type: null, data: null })}
+                  className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+                >
+                  Cancel
+                </button>
+
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                >
+                  Update
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
